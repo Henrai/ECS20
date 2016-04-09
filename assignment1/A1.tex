@@ -1,0 +1,191 @@
+% A useful template for typesetting beautiful homework solutions. 
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A04} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+\newcommand*\AND{\wedge}
+\newcommand*\OR{\vee}
+\newcommand*\NOT{\neg}
+\newcommand*\IMPLIES{\implies}
+\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 1\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+
+\item .
+\\
+\\ A ball and a bat cost \$1.10 (total). The bat costs \$1.0 more than the ball. How much does the ball cost?
+\subitem let the ball costs \$x, $x \in \mathbb{R}$
+\subitem \;\;$(x + 1.0) + x  = 1.1$
+\subitem \;\;$x = 0.05$
+\subitem \textbf{So, the ball costs \$0.05}
+\\
+\item .
+\\Prove the following statements:
+\subitem a) The sum of any three consecutive even numbers is always a multiple of 6\\
+\subitem \;\;\;\;$\forall n \in \mathbb{Z}$, we have $2*n$,\;\;$2*n+2$\;\;and\;\;$2*n+4$,\;\;which are consecutive even numbers.
+\subitem \;\;\;\;$2*n+(2*n+2)+(2*n+4) = 6*n+6$
+\subitem \;\;\;\;$\because 6*n+6 \equiv 0 \pmod 6$
+\subitem \;\;\;\;$\therefore 2*n+(2*n+2)+(2*n+4) \equiv 0 \pmod 6$
+\subitem \;\;\;\;So the sum of any three consecutive even numbers is always a multiple of 6 
+\\
+\subitem b) The product of any three consecutive even numbers is always a multiple of 8\\
+\subitem \;\;\;\;$\forall n \in \mathbb{Z}$, we have $2*n$,\;\;$2*n+2$\;\;and\;\;$2*n+4$,\;\;which are consecutive even numbers.
+\subitem \;\;\;\;$(2*n)*(2*n+2)*(2*n+4) = 8*n*(n+1)*(n+2)$
+\subitem \;\;\;\;$\because 8*n*(n+a1)*(n+2) \equiv 0 \pmod 8$
+\subitem \;\;\;\;$\therefore (2*n)*(2*n+2)*(2*n+4) \equiv 0 \pmod 8$
+\subitem \;\;\;\; So the product of any three consecutive even numbers is always a multiple of 8
+\\
+\subitem c) Prove that if you add the squares of three consecutive integer numbers and then subtract two, you always get a multiple of 3.
+\subitem \;\;\;\;$\forall n \in \mathbb{Z}$, we have $n$,\;\;$n+1$\;\;and\;\;$n+2$,\;\;which are consecutive integer numbers.
+\subitem \;\;\;\;$n^2+(n+1)^2+(n+2)^2-2$
+\subitem \;\;\;\;$=n^2+n^2+2*n+1+n^2+4*n+4$
+\subitem \;\;\;\;$=3*n^2+6*n+3$
+\subitem \;\;\;\;$=3*(n^2+2*n+1)$
+\subitem \;\;\;\;$\because 3*(n^2+2*n+1) \equiv 0 \pmod 3$
+\subitem \;\;\;\;$\therefore n^2+(n+1)^2+(n+2)^2-2 \equiv 0 \pmod 3$
+\subitem \;\;\;\;We can conclude that if I add the squares of three consecutive integer numbers and then subtract two, I always get a multiple of 3.
+\\
+\item .
+\\ Roger is an amateur magician. In one of his tricks he invites people in the audience to think of a number (integer). He then asks them to carry out the following simple instructions:
+\subitem \;\;\;\;\;\;\;\;\;\;\;double your number
+\subitem then\;\;\;\;add 5
+\subitem then\;\;\;\;multiply the number you now have by itself
+\subitem then\;\;\;\;subtract 25
+\subitem then\;\;\;\;divide by 4
+\subitem then\;\;\;\;divide by your original number
+\\
+\\Based on the final number obtained, Roger can then “guess” the initial number.
+\\
+Show that there is no magic in this. Justify your answer.
+\\
+\subitem Let the audience chooses n, $n \in \mathbb{N}$
+\subitem $N_0 = 2*n$
+\subitem $N_1 = N_0 + 5 = 2*n + 5$ 
+\subitem $N_2 = N_1*N_1 = (2*n+5)^2$
+\subitem $N_3 = N_2 - 25 = 4*n^2 + 20*n $
+\subitem $N_4 = N_3/4 = n^2 + 5*n$
+\subitem $N_5 = n_4/n = n + 5$
+\\
+\subitem The final number we get is $N_5$, which is equal to $n+5$. If we subtract 5 from the final number, we can get the initial number. So there is no magic in this.
+\item .
+Prove the following identities, where p, q, x, m, and n are real numbers:
+\subitem a)$8(p-q)+3(p+q)=2(p+2q)+9(p-q)$
+\\
+\subitem \;\;\;\;$LHS = 8*p-8*q+3*p+3*q = 11*p-5*q$
+\subitem \;\;\;\;$RHS = 2*p+4*q+9*p-9*q = 11*p-5*q$
+\subitem \;\;\;\;$\because LHS = RHS$
+\subitem \;\;\;\;$\therefore$ This identity is true.
+\\
+\subitem b)$x(m+n)+y(n-m)=m(x-y)+n(x+y)$
+\\
+\subitem \;\;\;\;$LHS = x*m+x*n+y*n-y*m$
+\subitem \;\;\;\;$RHS = x*m-y*m+x*n+y*n = x*m+x*n+y*n-y*m$
+\subitem \;\;\;\;$\because LHS = RHS$
+\subitem \;\;\;\;$\therefore$ This identity is true.
+\\
+\subitem c)$(x+2)(x+10)-(x-5)(x-4)=21*x$
+\\
+\subitem \;\;\;\;$LHS = x^2 + 12 * x + 20 - x^2 + 9*x -20 = 21*x$
+\subitem \;\;\;\;$RHS = 21*x$
+\subitem \;\;\;\;$\because LHS = RHS$
+\subitem \;\;\;\;$\therefore$ This identity is true.
+\\
+\subitem d)$m^4-1=(m^2+1)(m^2-1)$
+\\
+\subitem \;\;\;\;$LHS = m^4 -1$
+\subitem \;\;\;\;$RHS = m^4 + m^2 - m^2 -1 = m^4 - 1$
+\subitem \;\;\;\;$\because LHS = RHS$
+\subitem \;\;\;\;$\therefore$ This identity is true.
+\\
+\item Extra Credit
+\\Four persons need to cross a bridge to get back to their camp at night. 
+Unfortunately, they only have one flashlight and it only has enough light left for seventeen minutes. The bridge is too dangerous to cross without a flashlight, and it is strong enough to support only two persons at any given time. The flashlight cannot be thrown from one side of the bridge to the other. Each of the campers walks at a different speed. One can cross the bridge in 1 minute, another in 2 minutes, the third in 5 minutes, and the last one takes 10 minutes to cross.
+\\
+\\
+Tell these people how they can make it across in 17 minutes.
+\\
+\subitem according to the question, we can know that the first people, I will call him 'A', can cross the bridge in 1 minute; the second, called 'B', in 2 minutes, the third, called 'C', in 5 minutes, and the last one , called 'D', takes 10 minutes to cross.
+\subitem 1st step: let A and B cross the bridge, which will spend 2 min
+\subitem 2nd step: let A go back with the light, which will spend 1 min
+\subitem 3rd step: let C and D cross the bridge, which will spend 10 min
+\subitem 4th step: let B go back with the light, which will spend 2 min
+\subitem 5th step: let A and B cross the bridge, which will spend 2 min
+\subitem After 5 steps, all of the people crossed the bridge. Because $2+1+10+2+2 = 17$, they can cross the bridge in 17 minute.
+
+\end{enumerate}
+\
+\end{document}

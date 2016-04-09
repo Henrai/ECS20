@@ -1,0 +1,334 @@
+% A useful template for typesetting beautiful homework solutions. 
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A03} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+\newcommand*\AND{\wedge}
+\newcommand*\OR{\vee}
+\newcommand*\NOT{\neg}
+\newcommand*\IMPLIES{\implies}
+\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework two\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+
+\item .\\
+Construct a truth table for each of these compound propositions
+\subitem a) $(p \land q) \to (p \lor q)$
+
+\subitem
+\begin{tabular}{| c | c | c | c | c |}
+    \hline
+	p & q & $p \land q$ & $ p \lor q$ & $(p \land q) \to (p \lor q)$ \\
+	\hline
+	T & T & T & T & T\\
+	\hline
+	T & F & F & T & T\\
+	\hline
+	F & T & F & T & T\\
+	\hline
+	F & F & F & F & T \\
+	\hline
+\end{tabular}
+\subitem b) $(q \to \neg p) \leftrightarrow (p \leftrightarrow q)$
+\subitem
+\begin{tabular}{| c | c | c | c | c |}
+	\hline
+	p & q & $q \to \neg p$ & $p \leftrightarrow q$ &$(q \to \neg p) \leftrightarrow (p \leftrightarrow q)$\\
+	\hline
+	T & T & F & T & F\\
+	\hline
+	T & F & T & F & F\\
+	\hline 
+	F & T & T & F & F\\
+	\hline
+	F & F & T & T & T\\
+	\hline
+\end{tabular}
+\subitem c) $(p \leftrightarrow q) \oplus (p \leftrightarrow \neg q) $
+\subitem
+\begin{tabular}{| c | c | c | c | c |}
+	\hline
+	p & q & $p \leftrightarrow q$ & $p \leftrightarrow \neg q$ & $(p \leftrightarrow q) \oplus (p \leftrightarrow \neg q) $\\
+	\hline
+	T & T & T & F & T \\
+	\hline
+	T & F & F & T & T \\
+	\hline 
+	F & T & F & T & T \\
+	\hline 
+	F & F & T & F & T \\
+	\hline
+\end{tabular}
+\\
+\item .
+\\ Construct a truth table for each of these compound propositions
+\subitem a) $(p \oplus q) \lor (p \oplus \neg q)$
+\subitem
+\begin{tabular}{| c | c | c | c | c |}
+	\hline 
+	p & q & $p \oplus q$ & $p \oplus \neg q$ & $(p \oplus q) \lor (p \oplus \neg q)$\\
+    \hline
+	T & T & F & T & T \\
+	\hline
+	T & F & T & F & T \\
+	\hline 
+	F & T & T & F & T \\
+	\hline 
+	F & F & F & T & T \\
+	\hline
+\end{tabular}
+\subitem b) $(p \oplus q) \land (p \oplus \neg q)$
+\subitem 
+\begin{tabular}{| c | c | c | c | c |}
+	\hline 
+	p & q & $p \oplus q$ & $p \oplus \neg q$ &$(p \oplus q) \land (p \oplus \neg q)$\\
+    \hline
+	T & T & F & T & F \\
+	\hline
+	T & F & T & F & F \\
+	\hline 
+	F & T & T & F & F \\
+	\hline 
+	F & F & F & T & F \\
+	\hline
+\end{tabular}
+\\
+\\
+\\
+\item .\\
+Is the assertion ``This statement is false`` a proposition?
+\subitem According to the textbook, a proposition is a declarative sentence (that is, a sentence that declares a fact) that is either true
+or false, but not both. The assertion ``This statement is false``  is neither true nor false. It is a paradox. So it is not a proposition 
+\item .\\
+A contestant in a TV game show is presented with three boxes, A, B, and C. He is told  that one of the boxes contains a prize, while the two others are empty. Each box has a statement written on it:\\
+Box A: The prize is in this box\\
+Box B: The prize is not in box A\\
+Box C: The prize is not in this box\\
+The host of the show tells the contestant that only one of the statements is true. Can the contestant find logically which box contains the prize? Justify your answer.\\
+
+\subitem p: the prize is in box A
+\subitem q: the prize is in box B
+\subitem r: the prize is in box C
+\subitem so the statement of box A is p; the statement of box B is $\neg p$; the statement of box C is $\neg r$
+\subitem $\because$ there are only one price
+\subitem $\therefore p \land q \equiv F$
+\subitem $\therefore$ the truth table is:
+\subitem
+\begin{tabular}{| c | c | c | c | c | }
+	\hline 
+	p & r & p & $\neg p$ & $ \neg r$\\
+	\hline
+	T & F & T & F & T \\
+	\hline 
+	F & T & F & T & F \\
+	\hline 
+	F & F & F & T & T \\
+	\hline
+\end{tabular}
+\subitem
+\subitem According to the truth table, we can know that only when p is false and the r is true, there is only one true statement on the box. So the price is in box C.
+\item .\\
+This exercise relate to the inhabitants of the island of knights and knaves created by Smullyan, where knights always tell the truth and knaves always lie. You encounter two people, A and B. Determine, if possible, what A and B are if they address you in the way described. If you cannot determine what these two people are, can you draw any conclusions?\\
+\\
+A says “The two of us are both knights”, and B says “A is a knave”.\\
+\subitem p: A is Knight, $\neg p$: A is knave
+\subitem q: B is Knight, $\neg q$: B is knave
+\subitem $\because$ knights always tell the truth and knaves always lie
+\subitem $\therefore$ the value of the type of person, p, must equal to the value of his of her statement, r. 
+\subitem According to the truth table below, we can know that the $\neg (p \oplus r)$ is true, if and only if when the knave lie or the knight tell truth.  
+\subitem
+\begin{tabular}{| c | c | c | }
+	\hline 
+	p & r & $\neg (p \oplus r)$\\
+	\hline 
+	T & T & T\\
+	\hline
+	T & F & F\\
+	\hline 
+	F & T & F\\
+	\hline 
+	F & F & T\\
+	\hline
+\end{tabular}
+\subitem A : $p \land q$
+\subitem B : $\neg p$
+\subitem So we can know that :
+\subitem $\neg (p \oplus (p \land q))$:\;A's statement is true when he is a knight, and is false when he is a knave
+\subitem $ \neg (q \oplus \neg p)$:\;B's statement is true when he is a knight, and is false when he is a knave
+\subitem
+\begin{tabular}{| c | c | c | c | }
+	\hline 
+	p & q & $\neg (p \oplus (p \land q))$ & $ \neg (q \oplus \neg p)$\\
+	\hline 
+	T & T & T & F\\
+	\hline
+	T & F & F & T\\
+	\hline 
+	F & T & T & T\\
+	\hline 
+	F & F & T & F\\
+	\hline
+\end{tabular}
+\subitem
+\subitem According to the truth table, we can know that that A is a knave, and B is a knight. \\\\
+\item .\\
+Use truth tables to verify the associative laws:
+\subitem a) $(p \lor q) \lor r  \Leftrightarrow p \lor (q \lor r) $
+\subitem 
+\begin{tabular}{| c | c | c | c | c | c | c |}
+    \hline
+	p & q & r & $p \lor q$ & $q \lor r$ & $(p \lor q) \lor r $ & $p \lor (q \lor r)$ \\
+	\hline
+	T & T & T & T & T & T & T\\
+	\hline
+	T & T & F & T & T & T & T\\
+	\hline
+	T & F & T & T & T & T & T\\
+	\hline
+	T & F & F & T & F & T & T\\
+	\hline
+	F & T & T & T & T & T & T\\
+	\hline
+	F & T & F & T & T & T & T\\
+	\hline
+	F & F & T & F & T & T & T\\
+	\hline
+	F & F & F & F & F & F & F\\
+	\hline
+\end{tabular}
+\\
+\subitem b) $(p \land q) \land r  \Leftrightarrow p \land (q \land r) $
+\subitem 
+\begin{tabular}{| c | c | c | c | c | c | c |}
+    \hline
+	p & q & r & $p \land q$ & $ q \land r$ &$(p \land q) \land r $ & $p \land (q \land r) $ \\
+	\hline
+	T & T & T & T & T & T & T\\
+	\hline
+	T & T & F & T & F & F & F\\
+	\hline
+	T & F & T & F & F & F & F\\
+	\hline
+	T & F & F & F & F & F & F\\
+	\hline
+	F & T & T & F & T & F & F\\
+	\hline
+	F & T & F & F & F & F & F\\
+	\hline
+	F & F & T & F & F & F & F\\
+	\hline
+	F & F & F & F & F & F & F\\
+	\hline
+\end{tabular}
+\item .\\
+Show that $p \leftrightarrow q$ and $(p \land q) \lor (\neg p \land \neg q)$are equivalent.
+\subitem $LHS = p \leftrightarrow q $
+\subitem $\qquad\quad = (p \to q) \land (q \to p)$
+\subitem $\qquad\quad = (\neg p \land q) \land (\neg q \land p)$  
+\subitem $\qquad\quad = (\neg p \lor q) \land (\neg q \lor p)$
+\subitem $\qquad\quad = ((\neg p \lor q) \land \neg q)) \lor ((\neg p \lor q) \land p)$
+\subitem $\qquad\quad = ((\neg p \land \neg q) \lor (q \land \neg q)) \lor (\neg p \land  p ) \lor (q \land q))$
+\subitem $\qquad\quad = (\neg p \land \neg q) \lor (q \land q) $
+\subitem $\qquad\quad = (p \land q) \lor (\neg p \land \neg q)$ 
+\subitem $RHS = (p \land q) \lor (\neg p \land \neg q)$
+\subitem $\therefore p \leftrightarrow q$ and $(p \land q) \lor (\neg p \land \neg q)$are equivalent.
+\\
+\item Extra Credit\\We are back on the island of knights and knaves (see exercise 5 above). John and Bill are residents.\\
+John: if Bill is a knave, then I am a knight\\
+Bill: we are different\\
+Who is who?\\
+\subitem p: Bill is a knight.
+\subitem q: John is a knight.
+\subitem $\therefore$ Bill's statement is $p \oplus q$
+\subitem $\quad$ John's statement is $\neg p \to q$
+\subitem
+\begin{tabular}{| c | c | c | c | }
+	\hline 
+	p & q & $\neg (p \oplus (p \oplus q))$ & $ \neg (q \oplus (\neg p \to q))$\\
+	\hline 
+	T & T & F & T\\
+	\hline
+	T & F & T & F\\
+	\hline 
+	F & T & F & T\\
+	\hline 
+	F & F & T & T\\
+	\hline
+\end{tabular}
+\subitem According to the truth table, we can know that both of them are knave.
+\end{enumerate}
+\end{document}
