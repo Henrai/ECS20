@@ -1,0 +1,220 @@
+% A useful template for typesetting beautiful homework solutions. 
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+\providecommand{\ceil}[1]{\left \lceil #1 \right \rceil }
+\providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor }
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A04} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+\newcommand*\AND{\wedge}
+\newcommand*\OR{\vee}
+\newcommand*\NOT{\neg}
+\newcommand*\IMPLIES{\implies}
+\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 5\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+
+\item .\\
+Find this values:
+\begin{align*}
+	&\floor{1.4} = 1    &&\ceil{1.4} = 2   \\
+	&\floor{-0.4} = -1  &&\ceil{-0.4} = 0  \\
+	&\floor{4.99} = 5   &&\ceil{-4.99} = -4 \\
+	&\floor{\dfrac{1}{3} + \ceil{\dfrac{1}{3}}} = 1 
+	&&\ceil{ \floor{\dfrac{1}{3}} + \ceil{\dfrac{1}{3}} + \dfrac{1}{3}} = 2
+\end{align*}
+\item (proof)\\
+\subitem a) Show that the following statement is true: 
+\subitem \qquad ''If x is a real number such that $x^{2}+1=0$, then $x^{4}=-1$''.
+\subitem p: x is a real number such that $x^{2}+1=0$
+\subitem q: $x^{4}=-1$
+\subitem for $x^{2} + 1 = 0$, $\vartriangle = b^{2} - 2ac = -2$
+\subitem $\because \vartriangle < 0 $, The solution of the equation cannot be real. 
+\subitem $\therefore p$ is always false.
+\subitem $\therefore p \to q$ is always true.
+\subitem b) Constructive proof:
+\subitem \qquad '' If x and y are real numbers such that $x < y$, show that there exists a real number z. with $x <z < y$''
+\begin{align*}
+	&let\;\; z = x + \dfrac{x+y}{2}\\
+	&\therefore x < z, \;\;y > z\\
+	&\forall x,y \in \mathbb{R}, \exists z\;(x < z < y)
+\end{align*}
+\item .\\
+Let x be a real number. Show that $$\floor{4x} = \floor{x} + \floor{x + \dfrac{1}{4}} + \floor{x + \dfrac{2}{4}} + \floor{x + \dfrac{3}{4}} $$
+\subitem assume that $x = a + \varepsilon,\; a \in \mathbb{Z}, 0 \leqslant \varepsilon < 1 $ 
+\subitem if $0 \leqslant \varepsilon < \dfrac{1}{4}$ :
+\begin{align*}
+	LHS &= \floor{4\cdot(a + \varepsilon)} = 4a\\
+	RHS &= \floor{x + \varepsilon} + \floor{x + \varepsilon + \dfrac{1}{4}} + \floor{x + \varepsilon + \dfrac{2}{4}} + \floor{x + \varepsilon + \dfrac{3}{4}}\\
+		&= 4a\\
+	LHS &= RHS
+\end{align*}
+\subitem if $\dfrac{1}{4} \leqslant \varepsilon < \dfrac{2}{4}$ :
+\begin{align*}
+	LHS &= \floor{4\cdot(a + \varepsilon)} = 4a + 1\\
+	RHS &= \floor{x + \varepsilon} + \floor{x + \varepsilon + \dfrac{1}{4}} + \floor{x + \varepsilon + \dfrac{2}{4}} + \floor{x + \varepsilon + \dfrac{3}{4}}\\
+		&= a + a + a + (a + 1) \\
+		&= 4a + 1\\
+	LHS &= RHS
+\end{align*}
+\subitem if $\dfrac{2}{4} \leqslant \varepsilon < \dfrac{3}{4}$ :
+\begin{align*}
+	LHS &= \floor{4\cdot(a + \varepsilon)} = 4a + 2\\
+	RHS &= \floor{x + \varepsilon} + \floor{x + \varepsilon + \dfrac{1}{4}} + \floor{x + \varepsilon + \dfrac{2}{4}} + \floor{x + \varepsilon + \dfrac{3}{4}}\\
+		&= a + a + (a + 1) + (a + 1) \\
+		&= 4a + 2\\
+	LHS &= RHS
+\end{align*}
+\subitem if $\dfrac{3}{4} \leqslant \varepsilon < 1$ :
+\begin{align*}
+	LHS &= \floor{4\cdot(a + \varepsilon)} = 4a + 3\\
+	RHS &= \floor{x + \varepsilon} + \floor{x + \varepsilon + \dfrac{1}{4}} + \floor{x + \varepsilon + \dfrac{2}{4}} + \floor{x + \varepsilon + \dfrac{3}{4}}\\
+		&= a + (a + 1) + (a + 1) + (a + 1) \\
+		&= 4a + 3\\
+	LHS &= RHS
+\end{align*}
+\subitem Therefore, for any $x \in \mathbb{R}$,  $\floor{4x} = \floor{x} + \floor{x + \dfrac{1}{4}} + \floor{x + \dfrac{2}{4}} + \floor{x + \dfrac{3}{4}} $
+\item .\\
+Let f be a bijection from a set A to a set B. Let S and T be two subsets of A.
+\subitem a) Show that $f(S \cup T) = f(S) \cup f(T)$
+\subitem let  $x \in S \cup T$ : 
+\begin{align*}	
+	&\because x \in S \text{  or  } x \in T\\
+	&\therefore f(x) \in f(S) \text{  or  } f(x) \in f(T)\\
+	&\therefore f(x) \in f(S) \cup f(T)\\
+	&\therefore f(S \cup T) \subseteq f(S) \cup f(T)
+\end{align*}
+\subitem let $f(x) \in f(S) \cup f(T)$
+\begin{align*}
+	&\because \text{f is bijection} \\
+	&\therefore x \in S \text{  or  } x \in T\\
+	&\therefore x \in S \cup T \\
+	&\therefore f(x) \in f(S \cup T)\\
+	&\therefore f(S) \cup f(T) \subseteq f(S \cup T)
+\end{align*}
+\subitem Because $f(S) \cup f(T) \subseteq f(S \cup T)$ and $f(S \cup T) \subseteq f(S) \cup f(T)$, We can conclude that $f(S) \cup f(T) = f(S \cup T)$\\
+\subitem b)Show that $f(S \cap T) \subseteq f(S) \cap f(T) $
+\subitem let $x \in S \cap T$ :
+\begin{align*}
+	&\because x \in S \cap T \\
+	&\therefore (x \in S \land x \not\in T) \lor (x \in T \land x \not\in S)\\
+	&\therefore  (f(x) \in f(S) \land f(x) \not\in f(T)) \lor (f(x) \in f(T) \land f(x) \not\in f(S))\\
+	&\therefore f(x) \in f(S) \cap f(T) \\
+	&\therefore f(S \cap T) \subseteq f(x) \in f(S) \cap f(T)
+\end{align*}
+\subitem c) Show that $f^{-1}(S \cup T) = f^{-1}(S) \cup f^{-1}(T)$
+\subitem let  $x \in S \cup T$ : 
+\begin{align*}	
+	&\because x \in S \text{  or  } x \in T\\
+	&\therefore f^{-1}(x) \in f^{-1}(S) \text{  or  } f^{-1}(x) \in f^{-1}(T)\\
+	&\therefore f^{-1}(x) \in f^{-1}(S) \cup f^{-1}(T)\\
+	&\therefore f^{-1}(S \cup T) \subseteq f^{-1}(S) \cup f^{-1}(T)
+\end{align*}
+\subitem let $f^{-1}(x) \in f^{-1}(S) \cup f^{-1}(T)$
+\begin{align*}
+	&\because \text{f is bijection} \\
+	&\therefore x \in S \text{  or  } x \in T\\
+	&\therefore x \in S \cup T \\
+	&\therefore f^{-1}(x) \in f^{-1}(S \cup T)\\
+	&\therefore f^{-1}(S) \cup f^{-1}(T) \subseteq f^{-1}(S \cup T)
+\end{align*}
+\subitem Because $f^{-1}(S) \cup f^{-1}(T) \subseteq f^{-1}(S \cup T)$ and $f^{-1}(S \cup T) \subseteq f^{-1}(S) \cup f^{-1}(T)$, We can conclude that $f^{-1}(S \cup T) = f^{-1}(S) \cup f^{-1}(T)$\\
+\item Extra credit\\
+Let us consider a generalization of exercise 1. Let x be a real number, and N an integergreater or equal to 3. Show that:
+$$\floor{Nx} = \floor{x} + \floor{x + \dfrac{1}{N}} + \floor{x + \dfrac{2}{N}} + ... +  \floor{x + \dfrac{N-1}{N}} $$
+\subitem My own method:
+\subitem The formula can be rewritten as $ \floor{Nx} = \sum \limits_{i=0}^{N-1} \floor{x + \dfrac{i}{N}}$
+\subitem Assume that $x = a + \varepsilon,\; a \in \mathbb{Z}, 0 \leqslant \varepsilon < 1 $ 
+\subitem Let's choose $n \in \mathbb{R}$, $0 \leqslant n < N$ such that $\dfrac{n}{N} \leq \varepsilon < \dfrac{n+1}{N}$
+
+\subitem if $i \geq N- n$, $\floor{x + \dfrac{i}{N}} = a + 1$, then if $i < N -n$, $\floor{x + \dfrac{i}{N}} = a$
+\subitem $\therefore$ $RHS = n\cdot (a + 1) + (N-n)\cdot(a) = Na + n$
+\subitem $LHS = \floor{N\cdot(a + \varepsilon)} = Na + n$
+\subitem $\therefore LHS = RHS$\\
+
+\subitem Follow the hints:
+$$\text{let } f(x) =  \floor{Nx} - \sum \limits_{i=0}^{N-1} \floor{x + \dfrac{i}{N}}$$
+\begin{align*}
+\text f(x + \dfrac{1}{N}) &= \floor{Nx+1} - \sum \limits_{i=0}^{N-1} \floor{x + \dfrac{i+1}{N}} \\
+	&= \floor{Nx+1} + (f(x) - \floor{Nx} + \floor{x} - \floor{x + 1})\\
+	&= f(x)
+\end{align*}
+\subitem Therefore, the f(x) is a periodic function, whose  period is $1/N$
+\subitem $\forall x ( 0 \leqslant < 1/N),  f(x) = 0 - 0 = 0$
+\subitem $\because$ f(x) is a periodic function.
+\subitem $\therefore f(x) = 0$ for all real number x.
+\subitem $\therefore \forall x \in \mathbb{R}$, $\floor{Nx} = \sum \limits_{i=0}^{N-1} \floor{x + \dfrac{i}{N}}$
+\end{enumerate}
+\end{document}

@@ -1,0 +1,272 @@
+% A useful template for typesetting beautiful homework solutions. 
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A03} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+\newcommand*\AND{\wedge}
+\newcommand*\OR{\vee}
+\newcommand*\NOT{\neg}
+\newcommand*\IMPLIES{\implies}
+\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 3\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+
+\item .\\
+Show that this implication is a tautology, by using a truth table:
+\subitem \qquad $[(p \lor q) \land (p \to r) \land (q \to r)] \to r$
+\subitem 
+\begin{tabular}{| c | c | c | c | c | c | c |}
+	\hline 
+	p & q & r & $p \lor q$ & $p \to r$ & $ q \to r$ & $[(p \lor q) \land (p \to r) \land (q \to r)] \to r$\\
+	\hline
+	T & T & T & T & T & T & T\\
+	\hline	
+	T & T & F & T & F & F & T\\
+	\hline 
+	T & F & T & T & T & T & T \\
+	\hline	
+	T & F & F & T & F & T & T\\
+	\hline 
+	F & T & T & T & T & T & T\\
+	\hline	
+	F & T & F & T & T & F & T\\
+	\hline
+	F & F & T & F & T & T & T\\
+	\hline
+	F & F & F & F & T & T & T\\
+	\hline
+\end{tabular}
+\item .\\
+Show that $(p \lor q) \land (\neg p \lor r) \to (q \lor r)$ is a tautology.
+\subitem 
+\begin{tabular}{| c | c | c | c | c | c | c |}
+	\hline 
+	p & q & r & $p \lor q$ & $\neg p \lor r$ & $ q \lor r$ & $(p \lor q) \land (\neg p \lor r) \to (q \lor r)$\\
+	\hline
+	T & T & T & T & T & T & T\\
+	\hline	
+	T & T & F & T & F & F & T\\
+	\hline 
+	T & F & T & T & T & T & T \\
+	\hline	
+	T & F & F & T & F & F & T\\
+	\hline 
+	F & T & T & T & T & T & T\\
+	\hline	
+	F & T & F & T & F & T & T\\
+	\hline
+	F & F & T & F & T & T & T\\
+	\hline
+	F & F & F & F & T & F & T\\
+	\hline
+\end{tabular}
+\item .\\
+Determine whether these are valid arguments:
+\paragraph{(a)}
+``If $x^{2}$ is irrational, then x is irrational. Therefore, if x is irrational, it follows that $x^{2}$is irrational.``
+\subitem if $x = \sqrt{2}, then x^{2} = 2$
+\subitem $\because \sqrt{2}$ is irrational, and 2 is rational
+\subitem $\therefore$ this statement is not valid.
+\paragraph{(b)}
+``if $x^{2}$ is irrational, then x is irrational. The number $y = \pi^{2}$ is irrational. Therefore, the number $x = \pi$ is irrational.
+\subitem $\forall x \quad x^{2} \in$ irrational number,$x \in$ irrational number
+\subitem $\because \pi^{2} \in$ irrational number
+\subitem $\therefore \pi \in$ irrational number
+\newpage
+\item .\\Prove that a square of an integer ends with a 0, 1, 4, 5 6 or 9. (Hint:let $n = 10 k+\ell$, where $\ell$ = 0, 1, ...,9)
+\subitem let $n = 10 k + \ell, n \in \mathbb{Z}, k \in \mathbb{Z}$
+\subitem $n^{2} = 100 k^{2} + 20 k \ell + \ell^{2}$
+\subitem $\therefore n^{2}\;mod\;10 = \ell^{2}\;mod\;10 $
+\\
+\subitem
+\begin{tabular}{| c | c | c | c |}
+	\hline
+	$\ell$ & $\ell^{2}\;mod\;10$ & l & $\ell^{2}\;mod\;10$ \\
+	\hline 
+	0 & 0 & 5 & 5 \\
+	\hline	
+	1 & 1 & 6 & 6 \\
+	\hline
+	2 & 4 & 7 & 9 \\
+	\hline 
+	3 & 9 & 8 & 4 \\
+	\hline
+	4 & 6 & 9 & 1 \\
+	\hline	
+\end{tabular}
+\subitem according to the table above, we can know that a square of an integer only can ends with a 0, 1, 4, 5 6 or 9.
+\item.\\
+Prove that if n is a positive integer, then n is even if and only if 7n+4 is even.
+\subitem p : "n is even" q : "7n+4 is even"
+\subitem we want to proof that $p \leftrightarrow q$
+\paragraph{1)}
+$p \to q$
+\subitem if n is even, we can assume that $n = 2k, k \in \mathbb{Z}$
+\subitem $\therefore 7n + 4 = 14k + 4$ 
+\subitem $\because 14k + 4 mod 2 \equiv 0$
+\subitem $\therefore q$ is true
+\subitem $p \to q$ is true
+\paragraph{2)}
+$q \to p$
+\subitem we can proof it by contrapositive, so we should prove that $\neg p \to \neg q$ is true.
+\subitem if n is odd, we can assume that $n = 2k + 1, k \in \mathbb{Z}$
+\subitem $\therefore 7n + 4 = 14k + 11$ 
+\subitem $\because 14k + 4 mod 2 \equiv 1$
+\subitem $\therefore \neg q$ is true
+\subitem $\therefore \neg p \to \neg q$ is true
+\subitem $\therefore q \to p$ is true
+\subitem in the case that $(q \to p) \land (p \to q)$ is true, we can conclude that $p \leftrightarrow q$ is true
+\subitem so n is even if and only if 7n+4 is even.
+\newpage
+
+\item .\\
+Prove that either $2.10^{500} + 15$ or $2.10^{500}+ 16$ is not a perfect square. Is your proof constructive, or non-constructive?
+\subitem first of all, I want to prove that the difference between two perfect square cannot be 1.
+\subitem suppose we have two integers, m and n $(m < n)$. 
+\subitem $n^{2} - m^{2} = (n-m)(n+m)$
+\subitem $\because n-m \geqslant 1, n + m > 1$
+\subitem $\therefore n^{2} - m^{2} > 1$
+\subitem so the difference between two perfect square cannot be 1.
+\subitem $\because 2.10^{500} + 16 - 2.10^{500}+ 15 = 1$
+\subitem $\therefore$ there are at least 1 number is not perfect sauare number
+\subitem so we can conclude that either $2.10^{500} + 15$ or $2.10^{500}+ 16$ is not a perfect square.
+\subitem because I do not proof that either $2.10^{500} + 15$ or $2.10^{500}+ 16$ is not a perfect square directly, this proof is constructive. 
+\\
+\item .\\
+Prove or disprove that if a and b are rational numbers, then $a^{b}$ is also rational.
+\subitem if a = 2 and b = 0.5.  The number, $2^{0.5}$ will be a irrational number. So this statement is false. 
+\item .\\
+Prove that at least one of the real numbers $a_{1}, a_{2}, ..., a_{n}$ is greater than or equal to the average of these numbers. What kind of proof did you use?
+\subitem if all of the number is less than the average, we can say that $a_{i} = \bar{a} - k_{i},\;k_{i} \in \mathbb{Z}^{+}$
+\subitem $\bar{a} = \dfrac{1}{n} \sum\limits_{i=1}^n \bar{a} - k_{i} = \bar{a} - \sum\limits_{i=1}^n k_{i} $
+\subitem $\because k_{i} > 0$
+\subitem $\therefore$ we get that $\bar{a} < \bar{a}$, which is imposable.
+\subitem So my hypothesis is false, which means that there are at least one of the real numbers $a_{1}, a_{2}, ..., a_{n}$ is greater than or equal to the average of these numbers.
+\subitem I proof is by contrapositive.
+\newpage
+\item .\\
+The proof below has been scrambled. Please put it back in the correct order.\\
+\textbf{claim}: For all $n \geqslant 9$, if n is a perfect square, then n-1 is not prime.\\
+1: Since (n-1) is the product of 2 integers greater than 1, we know (n-1) is not prime\\
+2: Since $m \geqslant 3$, it follows that $m-1 \geqslant 2$ and $m+1 \geqslant 4$\\
+3: Let n be a perfect square such that $n \geqslant 9$ \\
+4: This means that $n-1 = m^{2}-1 = (m-1)(m+1)$\\
+5: There is an integer $m \geqslant 3$ such that $n = m^{2}$\\
+\subitem Answer:
+\subitem $3 \to 5 \to 4 \to 2 \to 1$
+\item .\\
+Prove that these four statements are equivalent: (i) $n^{2}$is odd, (ii) 1-n is even, (iii) $n^{3}$ is odd, (iv) $n^{2}+1$ is even.
+\subitem if n is odd, we can assume that $n = 2k + 1$
+\subitem $n^{2} = 4k^{2} + 4k +1$
+\subitem $\therefore n^{2}$ is odd
+\subitem $1 - n = -2k$
+\subitem $\therefore 1 - n$ is even
+\subitem $n^{3} = 8k^{3} + 4k^{2} + 2k + 1$
+\subitem $\therefore n^{3}$ is odd
+\subitem $n^{2} + 1 = 4k^{2} + 4k + 2$
+\subitem $\therefore n^{2} + 1$ is even 
+\subitem if n is even, we can assume that $n = 2k$
+\subitem $n^{2} = 4k^{2}$
+\subitem $\therefore n^{2}$ is even
+\subitem $1 - n = 1-2k$
+\subitem $\therefore 1 - n$ is odd
+\subitem $n^{3} = 8k^{3}$
+\subitem $\therefore n^{3}$ is even
+\subitem $n^{2} + 1 = 4k^{2} + 1$
+\subitem $\therefore n^{2} + 1$ is odd
+\subitem when n is odd, all of the statements are true. When n is even, all of the statements are false. So all of the statements are equivalent.
+
+\item .\\
+Use Exercise 8 to show that if the first 10 strictly positive integers are placed around a circle, in any order, then there exist three integers in consecutive locations around the circle that have a sum greater than or equal to 17.
+\subitem let $A_{1} = 1 + 2 + 3,\;A_{2} =  2 + 3 + 4\;...\;A_{10} = 10 + 1 + 2$ 
+\subitem $\therefore \sum\limits_{i=1}^{10} A_{i} = 55*3 = 165$
+\subitem $\therefore$ the average number of $A_{i}$ is 16.5.
+\subitem $\because$ all of the numbers are integers 
+\subitem $\therefore$ there must have a sum which is greater than or equal to 17.
+\end{enumerate}
+\end{document}
+
+
+
+
+
+
+
+
+

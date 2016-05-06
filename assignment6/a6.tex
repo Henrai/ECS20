@@ -1,0 +1,236 @@
+
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+%algorithm
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+%\algdisablelines
+\newcommand{\alg}{\texttt{algorithmicx}}
+\newcommand{\old}{\texttt{algorithmic}}
+\newcommand{\euk}{Euclid}
+\newcommand\ASTART{\bigskip\noindent\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\ACONTINUE{\end{minipage}\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\AENDSKIP{\end{minipage}\bigskip}
+\newcommand\AEND{\end{minipage}}
+
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+\providecommand{\ceil}[1]{\left \lceil #1 \right \rceil }
+\providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor }
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A04} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+%\newcommand*\AND{\wedge}
+%\newcommand*\OR{\vee}
+%\newcommand*\NOT{\neg}
+%\newcommand*\IMPLIES{\implies}
+%\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 6\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+\item .\\Prove or disprove each of these statements about the floor and ceiling functions.
+\subitem a) $\ceil{\floor{x}} = \floor{x}$, for all real number x.
+\begin{align*}
+	&\text{let } x = n + \varepsilon, n \in \mathbb{Z}, \varepsilon \in \mathbb{R},  0 \leq \varepsilon < 1\\
+	&LHS = \ceil{\floor{x}} = \ceil{n} = n\\
+	&RHS = \floor{x} = n\\
+	\therefore &LHS = RHS\\
+	\text{So}&\text{ this statement is true}
+\end{align*}
+\subitem b) $\floor{xy} = \floor{x} \floor{y}$, for all real number x and y.
+\subitem $\text{let } x = n_{x} + \varepsilon_{x}, n_{x} \in \mathbb{Z}, \varepsilon_{x} \in \mathbb{R},  0 \leq \varepsilon < 1$ , $\text{let } y = n_{y} + \varepsilon_{y}, n_{y} \in \mathbb{Z}, \varepsilon_{y} \in \mathbb{R},  0 \leq \varepsilon < 1$
+\begin{align*}
+	LHS &= \floor{n_{x}n_{y} + n_{x}\varepsilon_{y} + n_{y}\varepsilon_{x} + \varepsilon_{x} \varepsilon_{y}}  \\
+	&= \floor{n_{x}n_{y} + n_{x}\varepsilon_{y} + n_{y}\varepsilon_{x}}\\
+	RHS &= n_{x}n_{y}\\
+	 \therefore LHS &\neq RHS\\
+	 \text{So this}&\text{ statement is false}
+\end{align*}
+
+\subitem c) $\floor{\sqrt{\ceil{x}}} = \floor{\sqrt{x}}$, for all real number x.
+\subitem let $x= 0.5$, then:
+\begin{align*}
+	LHS &= \floor{\sqrt{\ceil{x}}} = 1 \\
+	RHS &= \floor{\sqrt{x}} = 0 \\
+	LHS &\neq RHS \\
+	\text{So this}&\text{ statement is false}
+\end{align*}
+\item .\\
+Show that $x^{3}$ is $O(x^{4})$, but that $x^{4}$ is not $O(x^3)$.
+\begin{align*}
+	\mathrm{if }\;&x^{3} \leqslant c x^{4} \\
+				& 1 \leqslant cx
+\end{align*}
+\begin{center}
+This statement is true for fall $x >0$ and  $c>0$, so $x^{3} = O(x^{4})$
+\end{center}
+\begin{align*}
+	\mathrm{if } \;&x^{4} \leqslant c x^{3} \\
+				& x \leqslant c
+\end{align*}
+\subitem \qquad we cannot find an $x_{0}$ which make  $\forall x > x_{0}$, such that $0 < x < c$, So $x^{4} \neq O(x^{3})$
+\newpage
+\item .\\
+\subitem a) Show that $2x - 9$ is $\Theta (x)$
+\subitem \qquad From the definition of big Theta:
+	$$c_1 x \leq 2x - 9 < c_2 x$$
+\subitem \qquad For all $x \geq x_{0}$:
+	$$c_1 \leq 2 - \dfrac{9}{x} \leq c_2$$
+\subitem \qquad The right-hand inequality can be made to hold for any value if $x \geq 3$ by choosing $c_{2} \geq 1$
+\subitem \qquad The left-hand inequality can be made to hold for any value if $x \geq 1$ by choosing $c_{1} \leq -7$
+\subitem \qquad Thus, by choosing $c_1 = -7$, $c_2 = 1$, and $x_{0} = 3$, we can verify that $2x - 9 = \Theta (x)$\\
+\subitem b) Show that $3x^2 + x - 5$ is $\Theta (x^2)$
+\subitem \qquad From the definition of big Theta:
+	$$c_1 x^2 \leq 3x^2 + x - 5 < c_2 x^2$$
+\subitem \qquad For all $x \geq x_{0}$:
+	$$c_1 \leq 3 + \dfrac{1}{x} - \dfrac{5}{x^2} \leq c_2$$
+\subitem \qquad The right-hand inequality can be made to hold for any value if $x \geq 5$ by choosing $c_{2} \geq 4$
+\subitem \qquad The left-hand inequality can be made to hold for any value if $x \geq 5$ by choosing $c_{1} \leq 3$
+\subitem \qquad Thus, by choosing $c_1 = 3$, $c_2 = 4$, and $x_{0} = 5$, we can verify that $3x^2 + x - 5= \Theta (x^2)$\\
+\subitem c) Show that $\floor{x + \dfrac{2}{3}}$ is $\Theta (x)$
+\subitem \qquad From the definition of big Theta:
+	$$c_1 x \leq \floor{x + \dfrac{2}{3}} < c_2 x$$
+\subitem \qquad The right-hand inequality can be made to hold for any value if $x \geq 2$ by choosing $c_{2} \geq 3$
+\subitem \qquad The left-hand inequality can be made to hold for any value if $x \geq 0$ by choosing $c_{1} \leq 1$
+\subitem \qquad Thus, by choosing $c_1 = 1$, $c_2 = 3$, and $x_{0} = 2$, we can verify that $\floor{x + \dfrac{2}{3}}=\Theta (x)$
+\subitem d) Show that $log_{10}(x) $ is $\Theta (log_{2} (x))$
+\subitem \qquad From the definition of big Theta:
+	$$c_1 log_{2}(x) \leq log_{10}(x) < c_2 log_{2}(x)$$
+\subitem \qquad For all $x \geq x_{0}$:
+	$$c_1 \leq \dfrac{1}{log_{2}10}  \leq c_2$$
+\subitem \qquad The right-hand inequality can be made to hold for any value if $x \geq 0$ by choosing $c_{2} \geq \dfrac{1}{log_{2}10}$
+\subitem \qquad The left-hand inequality can be made to hold for any value if $x \geq 5$ by choosing $c_{1} \leq \dfrac{1}{log_{2}10}$
+\subitem \qquad Thus, by choosing $c_1 = \dfrac{1}{log_{2}10}$, $c_2 = \dfrac{1}{log_{2}10}$, and $x_{0} = 0$, we can verify that $\Theta (log_{2} (x))$\\
+\item .\\
+Describe an algorithm that uses only assignment statements that replaces the quadruplet(w,x,y,z) with (x,y,z,w). What is the minimum number of assignment statements needed?
+\subitem the minimum number of assignments is 5.
+\alglanguage{pseudocode}
+\begin{algorithm}[h]
+\caption{replaces the quadruplet }
+\begin{algorithmic}[1]
+\Procedure {replace}{$w,x,y,z$} \Comment {A is a sequence with n elements}
+  \State $temp \gets w$
+  \State $w \gets x$
+  \State $x \gets y$
+  \State $y \gets z$ 
+  \State $z \gets temp$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\item .\\Devise an algorithm for finding both the largest and the smallest integers in a finite sequence of integers.What is the complexity of your algorithm?
+\subitem The complexity of the algorithm is $O(n)$.
+\alglanguage{pseudocode}
+\begin{algorithm}[h]
+\caption{Find Max and Min}
+\begin{algorithmic}[1]
+\Procedure {getMaxAndMin}{$A$, $n$} \Comment {A is a sequence with n elements}
+   \State $max \leftarrow -\infty$ \Comment {initialize max as negative infinity}
+   \State $min \leftarrow \infty$ \Comment {initialize min as positive infinity}
+   \For {$i \leftarrow 0, n-1$} \Comment {pick the $ith$ element in A}
+		\If {$min > A(i)$}
+			\State $min \gets A(i)$	\Comment{if $A(i) < min$, let A(i) become the new minimum}
+		\EndIf
+		\If {$max < A(i)$}
+			\State {$max \gets A(i) $} \Comment{if $A(i) > max$, let A(i) become the new maximum}
+		\EndIf
+   \EndFor
+   \State \textbf{return} $(min, max)$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\newpage
+\item Extra Credit\\We call a positive integer perfect if it equals the sum of its positive divisors other than itself.
+\subitem a) Show that 6 and 28 are perfect
+\begin{align*}
+	&6 = 1*2*3	\\
+	\therefore\; &\text{sum} = 1+2+3 = 6\\
+	\therefore\; &\text{6 is a perfect number}\\ 
+	&28 = 1*2*2*7 \\
+	\therefore\; &\text{sum} = 1+2+7 + 4 + 14  = 28\\
+	\therefore\; &\text{28 is a perfect number}\\
+\end{align*} 
+\subitem b) Show that $2^{p-1}(2^{p}-1)$ is a perfect number when $2p-1$ is prime.
+\begin{align*}
+	\text{sum} &= 2^{p-1} + (1 + 2^p -1)\sum \limits_{n = 0}^{p-2} 2^{n}\\
+			   &= 2^{p-1} +  2^p\;(2^{p-2}-1) \\
+			   &= 2^{p-1} +  2^{p-1}\;(2^{p-1}-2) \\
+			   &= 2^{p-1}(2^{p}-1)
+\end{align*}
+\begin{center}
+	so $2^{p-1}(2^{p}-1)$ is a perfect number
+\end{center}
+\end{enumerate}
+\end{document}
