@@ -1,0 +1,162 @@
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{tabularx}
+%algorithm
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+%\algdisablelines
+\newcommand{\alg}{\texttt{algorithmicx}}
+\newcommand{\old}{\texttt{algorithmic}}
+\newcommand{\euk}{Euclid}
+\newcommand\ASTART{\bigskip\noindent\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\ACONTINUE{\end{minipage}\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\AENDSKIP{\end{minipage}\bigskip}
+\newcommand\AEND{\end{minipage}}
+
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+\providecommand{\ceil}[1]{\left \lceil #1 \right \rceil }
+\providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor }
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A04} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+%\newcommand*\AND{\wedge}
+%\newcommand*\OR{\vee}
+%\newcommand*\NOT{\neg}
+%\newcommand*\IMPLIES{\implies}
+%\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 7\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+\item .\\
+\subitem e)-2002 is divided by 89?
+\subitem \qquad $\because -2002\;mod\;89 = 45$
+\subitem \qquad $\therefore$ -2002 is not divided by 89
+\subitem f) 0 is divided by 19?
+\subitem \qquad $\because 0\;mod\;19 = 0$
+\subitem \qquad $\therefore$ 0 is divided by 19
+\subitem g) 1,234,567 is divided by 101?
+\subitem \qquad $\because 1234567\;mod\;19 = 14$
+\subitem \qquad $\therefore$ 1,234,567 is not divided by 19
+\subitem h)-100 is divided by 103?
+\subitem \qquad $\because -100\;mod\;103 = 3$
+\subitem \qquad $\therefore$ -100 is not divided by 103
+\item .\\
+\subitem a) Let a be a positive integer. Show that $gcd(a,a-1) = 1$
+\begin{align*}
+	 &gcd(a, a-1) \\
+    =&gcd(a-1, 1) \\
+    =&1
+\end{align*}
+\subitem b) Use the result of part a) to solve the Diophantin eequation $$a+2b=2ab$$\qquad \qquad  where $(a,b)$ are positive integers
+\begin{align*}
+	& a+2b = 2ab\\
+	& a = 2(a-1)b\\
+	& b = \dfrac{a}{2(a-1)}
+\end{align*}
+\subitem \qquad Because both a and b are positive integer, we can only get one set of solution, a = 2, b = 1. 
+\item Extra Credit\\ Let a and b be two strictly positive integers. Solve $gcd(a,b)+lcm(a,b) = b + 9$
+\subitem Let $a = pd$, $b = qd$ ,which p, q, d are positive integers
+\begin{align*}
+	& gcd(a,b)+lcm(a,b) = b + 9 \\
+	& pd + \dfrac{pqd^2}{d} = qd + 9\\
+	& pd + pqd - qd = 9\\
+	& d(p - q + pq) = 9\\
+\end{align*}
+\subitem Because p ,q ,d are positive integers, we can get these solutions:\\
+\begin{tabularx}{300pt}{XXX} 
+\qquad &
+\begin{equation*}
+  \left\{
+   \begin{aligned}
+   &d = 9  \\
+   &p = 1  \\
+   &q = 1  \\
+   \end{aligned}
+  \right.
+\end{equation*} &
+  \begin{equation*}
+  \left\{
+   \begin{aligned}
+   	d = 3\\
+    p = 2\\
+    q = 1\\
+   \end{aligned}
+  \right.
+\end{equation*}
+\end{tabularx}
+\subitem So we can know that $a = 9, b = 9$ and $a = 6 , b = 3$
+\end{enumerate}
+\end{document}
