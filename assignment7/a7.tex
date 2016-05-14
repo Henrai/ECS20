@@ -126,37 +126,131 @@
 	& a = 2(a-1)b\\
 	& b = \dfrac{a}{2(a-1)}
 \end{align*}
+
 \subitem \qquad Because both a and b are positive integer, we can only get one set of solution, a = 2, b = 1. 
+\newpage
+\item .\\Leta, b, and c be three integers. Show that the equation $ax + by = c$ has at least one solution $(x_1,y_1)$ if and only if $gcd(a,b) \mid c$ \\
+\subitem Let p be the proposition ``$ax + by = c$ has at least one integer solution $(x_1,y_1)$`` and q be the proposition ``$gcd(a,b) / c$``. We want to show that $p \leftrightarrow q$, which is logically equivalent to show that $p \leftarrow q$ and $q \rightarrow p$.
+\subitem i) Let us show $p \rightarrow q$: 
+\subitem Hypothesis: p is true, If $ax + by = c$ has one integer solution $(x_1,y_1)$, then let $a = pd$, $b = qd$ where $d = gcd(a,b)$ and p,q are also integers. We get:
+\begin{align*}
+	&ax + by = c\\
+	&pdx + qdy = c\\
+	&d(px + qy) = c
+\end{align*}
+\subitem \qquad Because $px + qy$ and c are integers, we can get that $gcd(a,b) \mid c$
+\subitem ii) Let us show $q \rightarrow p$:
+\subitem Hypothesis: q is true. If $gcd(a,b) \mid c$, then $c = k gcd(a,b)$, $k \in \mathbb{Z}$. And according to the BÉZOUT’S THEOREM, $gcd(a,b) = sa + tb $, $(a,b) \in \mathbb{Z}^2$ we can get that:
+\begin{align*}
+	c &= k\; gcd(a,b) \\
+	  &= a \cdot sk + b \cdot tk\\	
+\end{align*} 
+\subitem  So we can get one solution easily:
+\begin{equation*}
+  \left\{
+   \begin{aligned}
+   	x = sk\\
+   	y = tk
+   \end{aligned}
+  \right.
+\end{equation*}
+\subitem Thus this equation has at least one integer solution when $gcd(a,b) \mid c$
+\subitem we can conclude that the equation $ax + by = c$ has at least one solution $(x_1,y_1)$ if and only if $gcd(a,b) \mid c$
+\item .\\Let a, b and n be three positive integers with $gcd(a,n) = 1$ and $gcd(b,n) = 1$. Show that $gcd(ab,n) = 1$.
+\subitem \qquad Because $gcd(a,n) = 1$, a and n are relative prime. \subitem \qquad So $a = pn + i$, $p \in \mathbb{R}$, $i \in \mathbb{N}, i < n$, i and n are relative prime.
+\subitem \qquad Similarly, we can get $b = qn + j$, $q \in \mathbb{R}$ and $j \in \mathbb{N}, j < n$, i and n are relative prime.
+\subitem \qquad Then $ab = pqn^{2} + pjn + qin + ij$
+\subitem \qquad Thus:
+\begin{align*}
+	gcd(ab, n) &= gcd(n, ab\; mod \;n) \\
+			   &= gcd(n, (pqn^{2} + pjn + qin + ij)\; mod \;n) \\
+			   &= gcd(n,ij\; mod \;n)
+\end{align*}
+\subitem Because i, n are relative prime and j, n are relative prime, ij and n are relative prime. Therefore, $ij\;mod\;n$ and n are relative prime.
+$$gcd(n, ij\; mod \;n) = gcd(ab, n) = 1$$
+
+\item .\\ Prove that there are no solutions in integers x and y to the equation $3x^2+5y^2=19$.
+\subitem Let both side mod 3:
+\begin{align*}
+	&RHS\;mod\;3\\
+	=&19\;mod\;3\\
+	=& 1 
+\end{align*}
+\begin{align*}
+	&LHS\;mod\;3\\
+	=&(3x^2+5y^2)\;mod\;3\\
+	=& 5y^2\;mod\;3
+\end{align*}
+\subitem if $y = 1$, $5y^2\;mod\;3$ = 2
+\subitem if $y = 2$  $5y^2 = 20 > 19$
+\subitem So we can conclude that this equation cannot have integer solution.
+\item .\\Show that if $n>3$ then $n$, $2n+1$ and $4n+1$ cannot all be prime
+\subitem if $n \;mod \; 3 = 0$: n is not prime.
+\subitem if $n \;mod\; 3 = 1 $, then $n = 3k + 1$, $k \in \mathbb{Z}$, then $2n + 1 = 6k + 3$, which is not prime.
+\subitem if $n \;mod\; 3 = 2$, then $n = 3k + 2$, $k \in \mathbb{Z}$, then $4n + 1 = 12k + 9$, which is not prime.
+\item .\\Prove or disprove that there are three consecutive odd positive integers that are primes,that is, odd primes of the form $p$, $p+2$, $p+4$.
+\subitem Because $3$, $5$, $7$ are consecutive odd positive primes, this statement is true.
+\item .\\Prove that if n is a positive integer such that the sum of its divisors is $n+1$, then n is prime.
+\subitem let's assume that the sum of its divisors is $n+1$, and n is not a prime.
+\subitem Because n is not a prime, $ n = 1*p*q$, $(p,q) \in \mathbb{Z}^{+}$
+\subitem Because m,n may not be prime, the sum of n's divisors must greater than  or equal to $1 + p + q + n $, which is greater than $n +1$. This is contradict with my assumption. So we can conclude that if n is a positive integer such that the sum of its divisors is $n+1$, then n is prime.
 \item Extra Credit\\ Let a and b be two strictly positive integers. Solve $gcd(a,b)+lcm(a,b) = b + 9$
 \subitem Let $a = pd$, $b = qd$ ,which p, q, d are positive integers
 \begin{align*}
 	& gcd(a,b)+lcm(a,b) = b + 9 \\
-	& pd + \dfrac{pqd^2}{d} = qd + 9\\
-	& pd + pqd - qd = 9\\
-	& d(p - q + pq) = 9\\
+	& d + \dfrac{pqd^2}{d} = qd + 9\\
+	& d + pqd - qd = 9\\
+	& d(1 - q + pq) = 9\\
 \end{align*}
 \subitem Because p ,q ,d are positive integers, we can get these solutions:\\
-\begin{tabularx}{300pt}{XXX} 
+\begin{tabularx}{300pt}{XXXXXX} 
 \qquad &
+  \begin{equation*}
+  \left\{
+   \begin{aligned}
+   	d = 3\\
+    p = 3\\
+    q = 1\\
+   \end{aligned}
+  \right.
+\end{equation*}&
+\begin{equation*}
+  \left\{
+   \begin{aligned}
+   	d = 1\\
+    p = 3\\
+    q = 4\\
+   \end{aligned}
+  \right.
+\end{equation*}&
+\begin{equation*}
+  \left\{
+   \begin{aligned}
+   	d = 1\\
+    p = 9\\
+    q = 1\\
+   \end{aligned}
+  \right.
+\end{equation*} &
+\begin{equation*}
+  \left\{
+   \begin{aligned}
+   	d = 1\\
+    p = 5\\
+    q = 2\\
+   \end{aligned}
+  \right.
+\end{equation*} &
 \begin{equation*}
   \left\{
    \begin{aligned}
    &d = 9  \\
    &p = 1  \\
-   &q = 1  \\
+   &q = n, n \in \mathbb{Z}, n > 1  \\
    \end{aligned}
   \right.
-\end{equation*} &
-  \begin{equation*}
-  \left\{
-   \begin{aligned}
-   	d = 3\\
-    p = 2\\
-    q = 1\\
-   \end{aligned}
-  \right.
-\end{equation*}
+\end{equation*} 
 \end{tabularx}
-\subitem So we can know that $a = 9, b = 9$ and $a = 6 , b = 3$
+\subitem So we can know that $(9, 3)$, $(3, 4)$,$(9, 1)$, $(5, 2)$ or $(9, 9n)$
 \end{enumerate}
 \end{document}
