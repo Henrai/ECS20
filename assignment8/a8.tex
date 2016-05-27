@@ -1,0 +1,238 @@
+% Also check out Professor Matloff's guide: 
+% http://heather.cs.ucdavis.edu/~matloff/LaTeX/HowToCreate.html.
+\documentclass{article}
+
+% Packages Used
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{comment}  % Used for multi-line commenting
+\usepackage{booktabs} % For better looking tables
+\usepackage{array}       % for better arrays (eg matrices) in maths
+\usepackage{paralist}    % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim}  % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig}      % make it possible to include more than one captioned figure/table in a single float
+\usepackage{amsthm}   % make proofs look better
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eufrak}      % for fraktur fonts
+\usepackage{mathabx}  % for \divides
+\usepackage{enumerate} % to get lists enumerated with letters
+\usepackage{hyperref}  % to get attractive URLs
+\usepackage{bussproofs} % for setting proofs
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{tabularx}
+%algorithm
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+%\algdisablelines
+\newcommand{\alg}{\texttt{algorithmicx}}
+\newcommand{\old}{\texttt{algorithmic}}
+\newcommand{\euk}{Euclid}
+\newcommand\ASTART{\bigskip\noindent\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\ACONTINUE{\end{minipage}\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\AENDSKIP{\end{minipage}\bigskip}
+\newcommand\AEND{\end{minipage}}
+
+
+% For theorem enviornment
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{mathrule}{Rule}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}[case]
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}[section]
+\providecommand{\ceil}[1]{\left \lceil #1 \right \rceil }
+\providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor }
+% For improved end of proof formatting
+\patchcmd{\endproof}  % <cmd>
+  {\endtrivlist}               % <search>
+  {\endtrivlist\par\nobreak\vspace*{\dimexpr-\baselineskip-\parskip}\nobreak\noindent\hrulefill}% <replace>
+  {}{}                            % <succes><failure>
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{ECS20: Discrete Mathematics\\ UC Davis - Patrice Koehl} % Top left header
+\chead{} % Top center header
+\rhead{\firstxmark Anze Wang ID: 912777492\\ECS 020 A03} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+
+\setlength\parindent{10pt} % Removes all indentation from paragraphs
+
+% Common boolean operators.
+%\newcommand*\AND{\wedge}
+%\newcommand*\OR{\vee}
+%\newcommand*\NOT{\neg}
+%\newcommand*\IMPLIES{\implies}
+%\newcommand*\XOR{\mathbin{\oplus}}
+
+
+\begin{document}
+
+\begin{center} \bf \LARGE Homework 8\\
+\end{center}
+
+
+\begin {enumerate}[itemindent=30pt,label=\bf Exercise {\arabic*}:]
+\item .\\
+show that $\sum \limits_{i=1}^{n} i^3 = \bigg(\dfrac{n(n+1)}{2} \bigg)^{2}$ for all $n \geq 1$
+\subitem For $n = 1$:
+	$$\sum \limits_{i=1}^{1} i^3 = 1 = \bigg(\dfrac{1(1+1)}{2}\bigg)^{2}$$
+\subitem So the equation is hold when $n = 1$
+\subitem If the equation is held for $n = k,\;k\geq 1$, then
+\begin{align*}
+	\sum \limits_{i=1}^{k} i^3 &= \bigg(\dfrac{k(k+1)}{2} \bigg)^{2} \\
+	\sum \limits_{i=1}^{k+1} i^3 &= \bigg(\dfrac{k(k+1)}{2} \bigg)^{2} + (k+1)^3	\\
+	& =\frac{(k+1)^2}{4}(k^2 + 4k + 4) \\
+	& =\frac{(k+1)^2}{4}(k+2)^2\\
+	&=\bigg(\dfrac{(k+2)(k+1)}{2} \bigg)^{2}
+\end{align*}
+\subitem Therefore the statement holds when $n=(k + 1)$.
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all $n \geq 1$, $n \in \mathbb{R}$
+ \item .\\
+ Use mathematical induction to prove that:
+ $$1*2*3+2*3*4+...+n(n+1)(n+2) = \dfrac{n(n+1)(n+2)(n+3)}{4}, \text{for all } n \geq 1$$
+\subitem let $f(n) = 1*2*3+2*3*4+...+n(n+1)(n+2)$
+\subitem for $n = 1$
+\begin{align*}
+	f(1) &= 1*2*3 \\
+		 &= 6 \\
+		 &= \dfrac{1(1+1)(1+2)(1+3)}{4} 
+\end{align*}
+\subitem So the $f(n)$ holds when $n = 1$
+\subitem If the $f(n)$ held when $n = k, k \geq 1$, then
+\begin{align*}
+	f(k+1) &= f(k) + (k+1)(k+2)(k+3)\\
+		   &= \dfrac{k(k+1)(k+2)(k+3)}{4} + (k+1)(k+2)(k+3)\\
+		   &= (k+1)(k+2)(k+3)(\dfrac{k}{4} + 1)\\
+		   &= \dfrac{(k+1)(k+2)(k+3)(k+4)}{4}		   
+\end{align*}
+\subitem Therefore $f(n)$ holds when $n=(k + 1)$.
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the $f(x)$ holds for all $n \geq 1$, $n \in \mathbb{N}$
+\item .\\
+Prove that $$1 + \dfrac{1}{4} + \dfrac{1}{9} + \ldots + \dfrac{1}{n^2} < 2 - \dfrac{1}{n}$$
+Whenever $n$ is a positive integer greater than $1$
+\subitem for $n = 2$ $$1 + \dfrac{1}{4} < 2 - \dfrac{1}{2}$$
+\subitem so the inequality holds when $n = 2$
+\subitem if the inequality holds when $n = k, k \geq 2$, then
+$$1 + \dfrac{1}{4} + \dfrac{1}{9} + \ldots + \dfrac{1}{k^2} < 2 - \dfrac{1}{k}$$
+\subitem so we can get that $$1 + \dfrac{1}{4} + \dfrac{1}{9} + \ldots + \dfrac{1}{k^2} + \dfrac{1}{(k+1)^2} < 2 - \dfrac{1}{k} + \dfrac{1}{(k+1)^2}$$
+\begin{align*}
+	&2 - \dfrac{1}{k+1} - \bigg (2 - \dfrac{1}{k} + \dfrac{1}{(k+1)^2}\bigg)\\
+   =&\dfrac{k(k+1)(2k+1) - ((2k-1)(k+1)^2 + k)}{k(k + 1)^2}\\
+   =&\dfrac{2k^3 + 3k^2 + k - (2k^3 + 3k^2 -2k + 1)}{k(k + 1)^2}\\
+   =&\dfrac{2k - 1}{k(k + 1)^2}
+\end{align*}
+\subitem Because $\dfrac{2k - 1}{k(k + 1)^2 } > 0 \text{ for all }k > 1$, therefore $2 - \dfrac{1}{k}$ is greater than $2 - \dfrac{1}{k} + \dfrac{1}{(k+1)^2}$ for all $k > 1$, thus $1 + \dfrac{1}{4} + \dfrac{1}{9} + \ldots + \dfrac{1}{k^2} + \dfrac{1}{(k+1)^2} < 2 - \dfrac{1}{k+1}$
+\subitem Therefore inequality holds when $n=(k + 1)$.
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the $f(n)$ holds for all $n \geq 1$, $n \in \mathbb{N}$
+\item . \\Use mathematical induction to show that $n^2-7n+12$ is non negative if $n$ is an integer greater than $3$.
+\subitem let $f(n) = n^2-7n+12$
+\subitem for $n = 4$ $f(4) = 4*4 - 7 * 4 + 12 = 0$
+\subitem so $f(n)$ holds when $n =4$
+\subitem if $f(n)$ holds when $n = k, k > 4$,
+\begin{align*}
+	f(k + 1) &= (k+1)^2 - 7(k+1) +12 \\
+			 &= k^2 +2k +1 - 7k - 7 + 12 \\
+			 &= k^2 - 7k + 12 + 2k  + 5\\
+			 & = f(k) + 2k + 5
+\end{align*}
+\subitem because $f(k) > 0$ and $2k + 5 > 0$, $f(k+1) > 0$
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the $f(n)$ holds for all $n > 3$, $n \in \mathbb{N}$
+\item .\\
+Use mathematical induction to prove that a set with $n$ elements has $n(n-1)/2$ sub sets containing exactly two elements whenever $n$ is an integer greater than or equal to 2.
+\subitem for $n = 2$, it only has one subset. And $2(2-1)/2 = 1$. So this statement holds when $n = 2$
+\subitem for $n > 2$, if we add one more element, the new element can form a set with all of the element in the old set. So the total number of sub set will increase k.
+$$ \dfrac{k(k-1)}{2} + k = \dfrac{k(k+1)}{2}$$
+\subitem Therefore inequality holds when $n=(k + 1)$.
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all $n \geq 2$, $n \in \mathbb{N}$ 
+\item .\\
+Find the flaw with the following proof that $a^n=1$ for all non negative integer $n$, when ever $a$ is a non zero real number: Basis step: $a^0=1$ is true, by definition of $a^0$ Inductive step: assume that $a^j=1$ for all non negative integers $j$ with $j \leq k$. Then note that:$$a^{k+1} = \dfrac{a^k \cdot a^k}{a^{k-1}}$$
+\subitem because he prove $a^{k+1}$ by using $a^k$ and $a^{k-1}$, he need two basic case to let this induction available. However, he only give $a^0 = 1$. That is why this proof is wrong.
+
+\item .\\
+Use mathematical induction to show that 21 divides $4^{n+1} + 5^{2n-1}$ whenever $n$ is a positive integer.
+\subitem for $n = 1$, we can get that $4^{n+1} + 5^{2n-1} = 4^2 + 5^1 = 21$
+\subitem Therefore this statement holds for base statement.
+\subitem if this statement holds for $n = k$, then we assume that $4^{n+1} \;mod\; 21 = i$, and $5^{2n-1}\;mod\; 21 = j$.
+\begin{align*}
+	&(4^{(n+1) + 1} + 5^{2(n+1) -1}) \;mod\; 21\\
+	=&(4*4^{n+1} + 25*5^{2n-1}) \;mod\; 21\\
+	=& 4\;mod\;21 * i + 25\;mod\;21*j\\
+	=& 4(i + j) \;mod\; 21\\
+	=& 0
+\end{align*}
+\subitem thus this statement holds when $n = k+1$
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all positive integer.
+\item .\\prove that $f_{1}^{2} + f_{2}^{2} + \ldots + f_{n}^{2} = f_{n}f_{n+1}$, whenever n is a positive integer.
+\subitem for $n = 1$, $f_1^2 = f_1 f_2 = 1*1 = 1$, so this statement holds when n = 1
+\subitem if this statement holds when $n = k$, $k > 1$
+\begin{align*}
+	&f_{1}^{2} + f_{2}^{2} + \ldots + f_{n}^{2} + f_{n+1}^2\\
+	=&f_n f_{n+1} + f_{n+1}^2\\
+	= &f_{n+1}(f_{n}+ f_{n+1})\\
+	= &f_{n+1}f_{n+2}
+\end{align*}
+\subitem thus this statement holds when $n = k+1$
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all positive integer.
+\item .\\
+show that $f_{0} - f_{1} + f_{2} - \ldots - f_{2n-1} + f_{2n} = f_{2n-1} -1$
+\subitem for $n = 1$
+\begin{align*}
+	LHS &= f_{0} - f_{1} + f_{2}\\
+		&= 0 - 1 + 1\\
+		&=0\\
+	RHS &= f_{1} -1\\
+		&= 0\\
+\end{align*}
+\subitem So this statement holds for $n = 1$
+\subitem if this statement holds when $n = k$, $k > 1$
+\begin{align*}
+	&f_{0} - f_{1} + f_{2} - \ldots - f_{2n-1} + f_{2n} - f_{2n+1} + f_{2n + 2} \\
+	=&f_{2n-1}-1 - f_{2n+1} + f_{2n + 2}\\
+	=& f_{2n-1}+ f_{2n}) - 1\\
+	=&f_{2n+1} -1
+\end{align*}
+\subitem thus this statement holds when $n = k+1$
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all positive integer.
+
+\item .\\
+Use mathematical induction to prove that a set with $n$ elements has $n(n-1)(n-2)/6$ subsets containing exactly three elements whenever $n$ is an integer greater than or equal to 3.
+\subitem for $x = 3$, the number of subset equals to $n(n-1)(n-2)/6 = 3*2*1/6 = 1$
+\subitem if this statement holds when $n = k$, $k > 3$
+\subitem if we add one more element, the new element can form a set with all of the subset with 2 elements in the old set.As I proved in exercise 5, we can know that a set with $n$ elements has $n(n-1)/2$ sub sets containing exactly two elements whenever $n$ is an integer greater than or equal to 2. So the total number of sub set will increase $k(k-1)/2$.  
+\begin{align*}
+	&k(k-1)(k-2)/6 +  k(k-1)/2 \\
+	=&k(k-1)((k-2)/6 + 1/2) \\
+	=&k(k-1)(k+1)/6
+\end{align*}
+\subitem thus this statement holds when $n = k+1$
+\subitem Since both the basis and the inductive step have been performed, by mathematical induction, the statement holds for all positive integer,which is greater than or equal to 3.
+\end{enumerate}
+\end{document}
